@@ -1,6 +1,6 @@
 # Build Stage
 FROM node:18-alpine AS builder
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@8.11.0 --activate
 WORKDIR /app
 COPY package*.json pnpm-lock.yaml ./
 # RUN npm ci --legacy-peer-deps
@@ -13,7 +13,7 @@ RUN npm run build
 
 # Production Stage
 FROM node:18-alpine
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@8.11.0 --activate
 WORKDIR /app
 COPY --from=builder /app/.next .next
 COPY --from=builder /app/public public
