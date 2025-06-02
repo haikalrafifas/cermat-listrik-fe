@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: ${DOCKERHUB_APP_ID}/frontend:prod
+    image: ${DOCKERHUB_USERNAME}/${DOCKERHUB_APP_ID}.frontend:prod
     networks:
       - app
     restart: unless-stopped

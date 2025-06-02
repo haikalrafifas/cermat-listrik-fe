@@ -32,7 +32,7 @@ jobs:
         context: ./
         file: ./docker/frontend/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_APP_ID }}/frontend:prod
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_APP_ID }}.frontend:prod
         no-cache: true
     
     - name: Create .env file from secrets
