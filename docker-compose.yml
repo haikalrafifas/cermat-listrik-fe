@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: ${DOCKERHUB_APP_ID}/frontend:prod
+    networks:
+      - app
+    restart: unless-stopped
+
+  webserver:    
+    build:
+      context: ./docker/webserver
+    ports:
+      - "${DOCKER_PORT_HTTP}:80"
+      - "${DOCKER_PORT_HTTPS}:443"
+    networks:
+      - app
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+networks:
+  app:
+    driver: bridge
+    name: ${DOCKERHUB_APP_ID}.app
